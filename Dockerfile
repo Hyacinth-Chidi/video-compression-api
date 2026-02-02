@@ -18,8 +18,12 @@ COPY . .
 # Create uploads directories if they don't exist
 RUN mkdir -p uploads compressed
 
+# Set default port
+ARG PORT=5500
+ENV PORT=$PORT
+
 # Expose port
-EXPOSE 3000
+EXPOSE $PORT
 
 # Start server
 CMD ["npm", "start"]
