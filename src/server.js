@@ -28,8 +28,8 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api', videoRoutes);
 
-// Serve compressed videos for download
-app.use('/download', express.static(config.upload.compressedDir));
+// Serve compressed videos for download - REMOVED to allow custom route to handle headers
+// app.use('/download', express.static(config.upload.compressedDir));
 
 // Better download endpoint with proper headers
 app.get('/download/:filename', (req, res) => {
