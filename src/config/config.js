@@ -12,7 +12,7 @@ export const config = {
   env: process.env.NODE_ENV || 'development',
   
   upload: {
-    maxFileSize: parseInt(process.env.MAX_FILE_SIZE) || 500 * 1024 * 1024, // 500MB
+    maxFileSize: parseInt(process.env.MAX_FILE_SIZE) || 1024 * 1024 * 1024, // 1GB
     uploadDir: process.env.UPLOAD_DIR || join(__dirname, '../../uploads'),
     compressedDir: process.env.COMPRESSED_DIR || join(__dirname, '../../compressed'),
   },

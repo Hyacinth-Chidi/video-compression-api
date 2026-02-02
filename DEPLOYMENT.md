@@ -8,6 +8,8 @@ This guide assumes you have a Virtual Private Server (VPS) running Ubuntu (commo
 2.  **Domain Name** (Optional): If you want a custom domain (e.g., `api.yourdomain.com`).
 3.  **SSH Access**: You should be able to log in to your VPS terminal.
 
+> [!NOTE] > **About FFmpeg**: You do **NOT** need to install FFmpeg on your VPS host. It is automatically installed _inside_ the Docker container when you build it.
+
 ---
 
 ## Step 1: Push Local Changes
@@ -134,6 +136,7 @@ For a production app, you should use Nginx as a reverse proxy and get a free SSL
 
 1.  **Install Nginx**: `sudo apt install nginx -y`
 2.  **Configure Nginx**: Create a new config file `/etc/nginx/sites-available/video-api`.
+
     ```nginx
     server {
         server_name api.yourdomain.com_or_IP;
@@ -147,10 +150,11 @@ For a production app, you should use Nginx as a reverse proxy and get a free SSL
             proxy_cache_bypass $http_upgrade;
 
             # Increase upload size for videos
-            client_max_body_size 500M;
+            client_max_body_size 1G;
         }
     }
     ```
+
 3.  **Enable Site**: `sudo ln -s /etc/nginx/sites-available/video-api /etc/nginx/sites-enabled/`
 4.  **Restart Nginx**: `sudo systemctl restart nginx`
 5.  **SSL (Certbot)**: `sudo apt install certbot python3-certbot-nginx -y`
